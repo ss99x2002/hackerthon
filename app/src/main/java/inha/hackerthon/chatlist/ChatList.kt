@@ -1,10 +1,10 @@
 package inha.hackerthon.chatlist
 
 data class ChatList(
-    val hostId: Long,
-    val guestId: Long,
+    val hostId: String,
+    val guestId: String,
     val content: String,
     val key: Long
 ){
-    constructor() : this(0,0,"",0)
+    constructor() : this("","","",0)
 }

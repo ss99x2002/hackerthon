@@ -40,8 +40,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val articleModel = snapshot.getValue(ArticleModel::class.java)
             articleModel ?: return
-            //articleList.add(articleModel)
-
+            articleList.add(articleModel)
             articleAdapter.submitList(articleList)
         }
 
@@ -71,17 +70,19 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
             if(auth.currentUser != null){
                 //로그인을 한 상태
-                if (auth.currentUser!!.uid != articleModel.userId.toString()) {
+                if (auth.currentUser!!.uid != articleModel.hostId) {
                     val chatRoom = ChatList(
-
-                        //key = System.currentTimeMillis()
+                        hostId = auth.currentUser!!.uid,
+                        guestId = articleModel.hostId,
+                        content = articleModel.title,
+                        key = System.currentTimeMillis()
                     )
                     userDB.child(auth.currentUser!!.uid)
                         .child(CHILD_CHAT)
                         .push()
                         .setValue(chatRoom)
 
-                    userDB.child(articleModel.userId.toString())
+                    userDB.child(articleModel.hostId)
                         .child(CHILD_CHAT)
                         .push()
                         .setValue(chatRoom)
@@ -98,18 +99,14 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentHomeBinding.articleRecyclerView.adapter = articleAdapter
 
-        articleList.add(ArticleModel(0,"동기","데이터베이스", "제목제목", "내용내용", 0))
-
         fragmentHomeBinding.addFloatingButton.setOnClickListener {
             context?.let {
-                val mIntent= Intent(this@HomeFragment.requireContext(), ArticleAddActivity::class.java)
-                startActivity(mIntent)
-//                if(auth.currentUser != null) {
-//                    val intent = Intent(it, AddArticleActivity::class.java)
-//                    startActivity(intent)
-//                }else{
-//                    Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
-//                }
+                if(auth.currentUser != null) {
+                    val intent = Intent(it, ArticleAddActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
+                }
             }
         }
 
