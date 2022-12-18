@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import android.widget.Toast.makeText
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import inha.hackerthon.ArticleAddActivity
 import inha.hackerthon.DBKey.Companion.CHILD_CHAT
 import inha.hackerthon.DBKey.Companion.DB_ARTICLES
 import inha.hackerthon.DBKey.Companion.DB_USERS
@@ -31,6 +33,9 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
     private lateinit var articleAdapter: ArticleAdapter
     private val articleList = mutableListOf<ArticleModel>()
     //상품 목록들을 서버에서 받아올거임
+
+    private lateinit var getResultText: ActivityResultLauncher<Intent>
+
     private val listener = object : ChildEventListener {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val articleModel = snapshot.getValue(ArticleModel::class.java)
@@ -97,13 +102,14 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
         fragmentHomeBinding.addFloatingButton.setOnClickListener {
             context?.let {
-
-                if(auth.currentUser != null) {
-                    val intent = Intent(it, AddArticleActivity::class.java)
-                    startActivity(intent)
-                }else{
-                    Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
-                }
+                val mIntent= Intent(this@HomeFragment.requireContext(), ArticleAddActivity::class.java)
+                startActivity(mIntent)
+//                if(auth.currentUser != null) {
+//                    val intent = Intent(it, AddArticleActivity::class.java)
+//                    startActivity(intent)
+//                }else{
+//                    Snackbar.make(view, "로그인 후 사용해주세요", Snackbar.LENGTH_LONG).show()
+//                }
             }
         }
 
