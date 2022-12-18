@@ -55,8 +55,8 @@
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_name"
-            android:textColor="@color/gray_cc"
+            android:text="김아무개"
+            android:textColor="@color/black"
             android:textSize="18sp"
             />
 
@@ -77,8 +77,8 @@
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_id"
-            android:textColor="@color/gray_cc"
+            android:text="kimamugea"
+            android:textColor="@color/black"
             android:textSize="18sp"
             />
 
@@ -99,8 +99,8 @@
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_school"
-            android:textColor="@color/gray_cc"
+            android:text="인하대학교"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -120,8 +120,8 @@
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_num"
-            android:textColor="@color/gray_cc"
+            android:text="122222"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
