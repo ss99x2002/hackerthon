@@ -20,12 +20,14 @@ class ArticleAdapter(val onItemClicked: (ArticleModel) -> Unit): ListAdapter<Art
 
             binding.titleTextView.text = articleModel.title
             binding.dateTextView.text = format.format(date).toString()
-            binding.priceTextView.text = articleModel.price
-            if (articleModel.imageUrl.isNotEmpty()){
-                Glide.with(binding.thumbnailImageView)
-                    .load(articleModel.imageUrl)
-                    .into(binding.thumbnailImageView)
-            }
+            binding.whoTextView.text = articleModel.who
+            binding.contentTextView.text = articleModel.content
+            binding.subjectTextView.text = articleModel.subject
+//            if (articleModel.imageUrl.isNotEmpty()){
+//                Glide.with(binding.thumbnailImageView)
+//                    .load(articleModel.imageUrl)
+//                    .into(binding.thumbnailImageView)
+//            }
             binding.root.setOnClickListener {
                 onItemClicked(articleModel)
             }
