@@ -11,7 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import inha.hackerthon.DBKey
+import inha.hackerthon.DBKey.Companion.DB_PROFILE
 import inha.hackerthon.R
 import inha.hackerthon.adapter.MyLectureRVAdapter
 import inha.hackerthon.databinding.FragmentMypageBinding
@@ -48,6 +52,7 @@ class MyPageFragment :Fragment(),View.OnClickListener {
                 }
             }
         }
+
         return binding.root
     }
 

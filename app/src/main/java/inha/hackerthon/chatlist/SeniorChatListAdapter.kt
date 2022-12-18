@@ -1,18 +1,13 @@
 package inha.hackerthon.chatlist
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import inha.hackerthon.databinding.ItemArticleBinding
 import inha.hackerthon.databinding.ItemChatListBinding
-import java.text.SimpleDateFormat
-import java.util.Date
 
-class ChatListAdapter(val onItemClicked: (ChatList) -> Unit): ListAdapter<ChatList, ChatListAdapter.ViewHolder>(diffUtil) {
+class SeniorChatListAdapter(val onItemClicked: (ChatList) -> Unit): ListAdapter<ChatList, SeniorChatListAdapter.ViewHolder>(diffUtil) {
     inner class ViewHolder(private val binding: ItemChatListBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(chatList: ChatList) {
             binding.root.setOnClickListener{

@@ -24,6 +24,13 @@
             android:textColor="@color/black"
             android:textSize="21sp"
             android:textStyle="bold" />
+        <Button
+            android:id="@+id/editButton"
+            android:text="수정"
+            android:textStyle="bold"
+            android:background="@drawable/view_same"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -46,8 +53,8 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/nameTextView"
+        <EditText
+            android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -55,7 +62,7 @@
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_name"
+            android:hint="@string/profile_name"
             android:textColor="@color/gray_cc"
             android:textSize="18sp"
             />
@@ -90,8 +97,8 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/schoolTextView"
+        <EditText
+            android:id="@+id/schoolEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -99,7 +106,7 @@
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_school"
+            android:hint="@string/profile_school"
             android:textColor="@color/gray_cc"
             android:textSize="18sp" />
 
@@ -111,16 +118,17 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/numTextView"
+        <EditText
+            android:id="@+id/numEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:inputType="numberDecimal"
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn_profile"
             android:elevation="3dp"
             android:padding="10dp"
-            android:text="@string/profile_num"
+            android:hint="@string/profile_num"
             android:textColor="@color/gray_cc"
             android:textSize="18sp" />
 
@@ -178,7 +186,7 @@
                 android:elevation="5dp"
                 android:onClick="onClick"
                 android:text="수정"/>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

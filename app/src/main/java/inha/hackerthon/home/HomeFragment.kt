@@ -22,6 +22,7 @@ import inha.hackerthon.DBKey.Companion.CHILD_CHAT
 import inha.hackerthon.DBKey.Companion.DB_ARTICLES
 import inha.hackerthon.DBKey.Companion.DB_FRIEND
 import inha.hackerthon.DBKey.Companion.DB_JUNIOR
+import inha.hackerthon.DBKey.Companion.DB_PROFILE
 import inha.hackerthon.DBKey.Companion.DB_SENIOR
 import inha.hackerthon.DBKey.Companion.DB_USERS
 import inha.hackerthon.R
@@ -70,6 +71,7 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         articleList.clear()
         articleDB = Firebase.database.reference.child(DB_ARTICLES)
         userDB = Firebase.database.reference.child(DB_USERS)
+
         articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
             if(auth.currentUser != null){
                 //로그인을 한 상태
@@ -80,43 +82,47 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                         content = articleModel.title,
                         key = System.currentTimeMillis()
                     )
-                    if(articleModel.who == "후배"){
-                        userDB.child(auth.currentUser!!.uid)
-                            .child(CHILD_CHAT)
-                            .child(DB_JUNIOR)
-                            .push()
-                            .setValue(chatRoom)
+                    when (articleModel.who) {
+                        "후배" -> {
+                            userDB.child(auth.currentUser!!.uid)
+                                .child(CHILD_CHAT)
+                                .child(DB_JUNIOR)
+                                .push()
+                                .setValue(chatRoom)
 
-                        userDB.child(articleModel.hostId)
-                            .child(CHILD_CHAT)
-                            .child(DB_SENIOR)
-                            .push()
-                            .setValue(chatRoom)
+                            userDB.child(articleModel.hostId)
+                                .child(CHILD_CHAT)
+                                .child(DB_SENIOR)
+                                .push()
+                                .setValue(chatRoom)
 
-                    }else if(articleModel.who == "선배"){
-                        userDB.child(auth.currentUser!!.uid)
-                            .child(CHILD_CHAT)
-                            .child(DB_SENIOR)
-                            .push()
-                            .setValue(chatRoom)
+                        }
+                        "선배" -> {
+                            userDB.child(auth.currentUser!!.uid)
+                                .child(CHILD_CHAT)
+                                .child(DB_SENIOR)
+                                .push()
+                                .setValue(chatRoom)
 
-                        userDB.child(articleModel.hostId)
-                            .child(CHILD_CHAT)
-                            .child(DB_JUNIOR)
-                            .push()
-                            .setValue(chatRoom)
-                    }else if(articleModel.who == "동기"){
-                        userDB.child(auth.currentUser!!.uid)
-                            .child(CHILD_CHAT)
-                            .child(DB_FRIEND)
-                            .push()
-                            .setValue(chatRoom)
+                            userDB.child(articleModel.hostId)
+                                .child(CHILD_CHAT)
+                                .child(DB_JUNIOR)
+                                .push()
+                                .setValue(chatRoom)
+                        }
+                        "동기" -> {
+                            userDB.child(auth.currentUser!!.uid)
+                                .child(CHILD_CHAT)
+                                .child(DB_FRIEND)
+                                .push()
+                                .setValue(chatRoom)
 
-                        userDB.child(articleModel.hostId)
-                            .child(CHILD_CHAT)
-                            .child(DB_FRIEND)
-                            .push()
-                            .setValue(chatRoom)
+                            userDB.child(articleModel.hostId)
+                                .child(CHILD_CHAT)
+                                .child(DB_FRIEND)
+                                .push()
+                                .setValue(chatRoom)
+                        }
                     }
 
                     Snackbar.make(view, "채팅방이 생성되었습니다.", Snackbar.LENGTH_LONG).show()

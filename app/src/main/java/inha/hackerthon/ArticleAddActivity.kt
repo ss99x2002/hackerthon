@@ -23,6 +23,7 @@ import inha.hackerthon.home.ArticleModel
 
 class ArticleAddActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityArticleAddBinding
+    private var whoName:String =""
     private val auth: FirebaseAuth by lazy {
         Firebase.auth
     }
@@ -36,8 +37,6 @@ class ArticleAddActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityArticleAddBinding.inflate(layoutInflater)
         createSpinner()
         setContentView(binding.root)
-
-
     }
 
     private fun uploadArticle(
@@ -65,8 +64,9 @@ class ArticleAddActivity : AppCompatActivity(), View.OnClickListener {
         binding.lectureSpinner.adapter = ArrayAdapter.createFromResource(this,R.array.lecture,android.R.layout.simple_spinner_item,)
     }
 
-    private fun selectedBtn(){
-
+    private fun selectedBtn(item:String)
+    {
+        whoName = item
     }
 
     override fun onClick(v: View?) {
@@ -92,16 +92,19 @@ class ArticleAddActivity : AppCompatActivity(), View.OnClickListener {
                 binding.sameButton.background=resources.getDrawable(R.drawable.view_same)
                 binding.youngButton.background= resources.getDrawable(R.drawable.view_not_selected)
                 binding.oldButton.background= resources.getDrawable(R.drawable.view_not_selected)
+                selectedBtn("동기")
             }
             R.id.youngButton-> {
                 binding.youngButton.background=resources.getDrawable(R.drawable.view_young)
                 binding.sameButton.background= resources.getDrawable(R.drawable.view_not_selected)
                 binding.oldButton.background= resources.getDrawable(R.drawable.view_not_selected)
+                selectedBtn("후배")
             }
             R.id.oldButton-> {
                 binding.oldButton.background=resources.getDrawable(R.drawable.view_old)
                 binding.youngButton.background= resources.getDrawable(R.drawable.view_not_selected)
                 binding.sameButton.background= resources.getDrawable(R.drawable.view_not_selected)
+                selectedBtn("선배")
             }
         }
     }
@@ -123,18 +126,19 @@ class ArticleAddActivity : AppCompatActivity(), View.OnClickListener {
                             val title = binding.titleEditText.text.toString()
                             val content = binding.contentEditText.text.toString()
                             val hostId = auth.currentUser?.uid.orEmpty()
-
+                            var subject = ""
                             if (lectureSpinner.selectedItemPosition!=0)
                             {
-                                val lecture = lectureSpinner.selectedItem.toString()
+                                subject = lectureSpinner.selectedItem.toString()
                             }
 
 
-
+                            val who = "${whoName}님 와주세요"
 
                             //who랑 과목명 넣어줘야함
                             showProgress()
-                            uploadArticle(hostId, who = "후배" , subject = "데이터베이스",title, content)
+                            uploadArticle(hostId, who , subject,title, content)
+
                         }
 
                         override fun onClose() {
