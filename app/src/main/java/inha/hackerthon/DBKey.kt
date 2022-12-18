@@ -9,5 +9,6 @@ class DBKey {
         const val DB_JUNIOR = "junior"
         const val DB_SENIOR = "senior"
         const val DB_FRIEND = "friend"
+        const val DB_PROFILE = "profile"
     }
 }

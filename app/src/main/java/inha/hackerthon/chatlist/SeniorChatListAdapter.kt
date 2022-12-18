@@ -13,6 +13,7 @@ class SeniorChatListAdapter(val onItemClicked: (ChatList) -> Unit): ListAdapter<
             binding.root.setOnClickListener{
                 onItemClicked(chatList)
             }
+
             binding.hostTextView.text = chatList.hostId
             binding.recentChatTextView.text = chatList.content
         }

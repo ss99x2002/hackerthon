@@ -48,13 +48,7 @@ class ChatListFragment: Fragment(R.layout.fragment_chatlist) {
         fragmentChatlistBinding.chatListRecyclerView.layoutManager = LinearLayoutManager(context)
 
         //동기
-        val chatDB =
-            Firebase
-                .database.reference
-                .child(DB_USERS)
-                .child(auth.currentUser!!.uid)
-                .child(CHILD_CHAT)
-                .child(DB_FRIEND)
+        val chatDB = Firebase.database.reference.child(DB_USERS).child(auth.currentUser!!.uid).child(CHILD_CHAT).child(DB_FRIEND)
 
 
 

@@ -19,7 +19,7 @@ class ChatListAdapter(val onItemClicked: (ChatList) -> Unit): ListAdapter<ChatLi
                 onItemClicked(chatList)
             }
             //binding.chatRoomTitleTextView.text = chatList.itemTitle
-            binding.hostTextView.text = "동동"
+            binding.hostTextView.text = chatList.hostId
             binding.recentChatTextView.text = chatList.content
         }
     }

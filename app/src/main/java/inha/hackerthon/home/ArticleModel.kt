@@ -10,11 +10,3 @@ data class ArticleModel(
 ) {
     constructor():this("","","","","", 0)
 }
-//data class ArticleModel(
-//    val sellerId: String,
-//    val title: String,
-//    val createdAt: Long,
-//    val price: String,
-//) {
-//    constructor():this("","",0,"")
-//}
