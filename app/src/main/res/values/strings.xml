@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">hackerthon</string>
 
+    <string name="dialog_title">Title</string>
+
     <!-- 게시물 추가 -->
     <string name="new_article">새 게시물 작성</string>
     <string name="who">누구를 위한 글인가요?</string>
+    <string name="add_confirm">게시물을 작성하시겠습니까?</string>
 </resources>
