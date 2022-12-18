@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="0dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical"
@@ -131,17 +132,31 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/lectureSpinner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_profile"
-            android:elevation="4dp"
-            android:spinnerMode="dropdown"
-            android:padding="10dp"
-            android:textColor="@color/gray_cc"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/lectureSpinner"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_profile"
+                android:elevation="4dp"
+                android:spinnerMode="dropdown"
+                android:padding="10dp"
+                android:textColor="@color/gray_cc"
+                android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/lectureAddButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_add"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lectureRV"
@@ -149,8 +164,38 @@
             android:layout_height="wrap_content"
             android:background="@drawable/view_card"
             android:elevation="3dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/view_card"
+                android:textColor="@color/red"
+                android:elevation="3dp"
+                android:text="취소"
+                android:onClick="onClick"/>
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/view_card"
+                android:textColor="@color/blue"
+                android:elevation="5dp"
+                android:onClick="onClick"
+                android:text="수정"/>
+        </LinearLayout>
     </LinearLayout>
 
 

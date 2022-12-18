@@ -8,26 +8,67 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import inha.hackerthon.R
+import inha.hackerthon.adapter.MyLectureRVAdapter
 import inha.hackerthon.databinding.FragmentMypageBinding
 
 class MyPageFragment :Fragment() {
     private lateinit var binding:FragmentMypageBinding
+    private var dataList : MutableList<String> = arrayListOf()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMypageBinding.inflate(layoutInflater)
+
+        if (dataList.isEmpty())
+        {
+            initData()
+        }
         createSpinner()
+        val lectureRVAdapter = MyLectureRVAdapter(dataList)
+        with(binding)
+        {
+            lectureRV.layoutManager = LinearLayoutManager(context)
+            lectureRV.adapter = lectureRVAdapter
+            lectureAddButton.setOnClickListener {
+                if(lectureSpinner.selectedItemPosition!=0)
+                {
+                    dataList.add(lectureSpinner.selectedItem.toString())
+                    lectureRVAdapter.notifyDataSetChanged()
+                }
+            }
+        }
         return binding.root
+    }
+
+    fun createRV() {
+//        val lectureRVAdapter = MyLectureRVAdapter(dataList)
+//        with(binding)
+//        {
+//            lectureRV.layoutManager = LinearLayoutManager(context)
+//            lectureRV.adapter = lectureRVAdapter
+//        }
     }
 
     fun createSpinner() {
         binding.lectureSpinner.adapter = ArrayAdapter.createFromResource(requireContext(),R.array.lecture,android.R.layout.simple_spinner_item,)
+    }
+
+    fun initData(){
+        binding.lectureSpinner.setSelection(0)
+        dataList.apply{
+            add("리눅스 프로그래밍")
+            add("컴퓨터구조")
+            add("자료구조")
+            add("데이터베이스")
+        }
     }
 }
 
