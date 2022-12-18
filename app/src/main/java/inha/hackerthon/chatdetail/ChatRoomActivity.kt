@@ -18,9 +18,11 @@ import inha.hackerthon.databinding.ActivityChatRoomBinding
 
 class ChatRoomActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatRoomBinding
+
     private val auth: FirebaseAuth by lazy {
         Firebase.auth
     }
+
     private val chatList = mutableListOf<ChatItem>()
     private val adapter = ChatItemAdapter()
     private var chatDB: DatabaseReference? = null
