@@ -16,7 +16,7 @@ import inha.hackerthon.R
 import inha.hackerthon.adapter.MyLectureRVAdapter
 import inha.hackerthon.databinding.FragmentMypageBinding
 
-class MyPageFragment :Fragment() {
+class MyPageFragment :Fragment(),View.OnClickListener {
     private lateinit var binding:FragmentMypageBinding
     private var dataList : MutableList<String> = arrayListOf()
 
@@ -40,8 +40,11 @@ class MyPageFragment :Fragment() {
             lectureAddButton.setOnClickListener {
                 if(lectureSpinner.selectedItemPosition!=0)
                 {
-                    dataList.add(lectureSpinner.selectedItem.toString())
-                    lectureRVAdapter.notifyDataSetChanged()
+                    if (!dataList.contains(lectureSpinner.selectedItem))
+                    {
+                        dataList.add(lectureSpinner.selectedItem.toString())
+                        lectureRVAdapter.notifyDataSetChanged()
+                    }
                 }
             }
         }
@@ -68,6 +71,15 @@ class MyPageFragment :Fragment() {
             add("컴퓨터구조")
             add("자료구조")
             add("데이터베이스")
+        }
+    }
+
+    override fun onClick(w: View?) {
+        when(w?.id)
+        {
+            R.id.addButton-> {
+                // 수정 값 보내는 retrofit 작성하기
+            }
         }
     }
 }
