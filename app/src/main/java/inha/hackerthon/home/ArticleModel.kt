@@ -1,11 +1,12 @@
 package inha.hackerthon.home
 
 data class ArticleModel(
-    val sellerId: String,
+    val userId: Long,
+    val who: String,
+    val subject: String,
     val title: String,
+    val content: String,
     val createdAt: Long,
-    val price: String,
-    val imageUrl: String
 ) {
-    constructor():this("","",0,"","")
+    constructor():this(0,"","","","", 0)
 }

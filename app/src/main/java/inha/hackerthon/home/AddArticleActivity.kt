@@ -99,10 +99,10 @@ class AddArticleActivity : AppCompatActivity() {
     }
 
     private fun uploadArticle(sellerId: String, title: String, price:String,  imageUri: String){
-        val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "$price 원", imageUri)
-        articleDB.push().setValue(model)
-        hideProgress()
-        finish()
+        //val model = ArticleModel(sellerId, title, System.currentTimeMillis(), "$price 원", imageUri)
+//        articleDB.push().setValue(model)
+//        hideProgress()
+//        finish()
     }
 
     private fun showProgress() {

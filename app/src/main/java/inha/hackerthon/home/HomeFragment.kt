@@ -35,7 +35,8 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
             val articleModel = snapshot.getValue(ArticleModel::class.java)
             articleModel ?: return
-            articleList.add(articleModel)
+            //articleList.add(articleModel)
+
             articleAdapter.submitList(articleList)
         }
 
@@ -65,19 +66,17 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
             if(auth.currentUser != null){
                 //로그인을 한 상태
-                if (auth.currentUser!!.uid != articleModel.sellerId) {
+                if (auth.currentUser!!.uid != articleModel.userId.toString()) {
                     val chatRoom = ChatList(
-                        buyerId = auth.currentUser!!.uid,
-                        sellerId = articleModel.sellerId,
-                        itemTitle = articleModel.title,
-                        key = System.currentTimeMillis()
+
+                        //key = System.currentTimeMillis()
                     )
                     userDB.child(auth.currentUser!!.uid)
                         .child(CHILD_CHAT)
                         .push()
                         .setValue(chatRoom)
 
-                    userDB.child(articleModel.sellerId)
+                    userDB.child(articleModel.userId.toString())
                         .child(CHILD_CHAT)
                         .push()
                         .setValue(chatRoom)
@@ -93,6 +92,8 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
 
         fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentHomeBinding.articleRecyclerView.adapter = articleAdapter
+
+        articleList.add(ArticleModel(0,"동기","데이터베이스", "제목제목", "내용내용", 0))
 
         fragmentHomeBinding.addFloatingButton.setOnClickListener {
             context?.let {
