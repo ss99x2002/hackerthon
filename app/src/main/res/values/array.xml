@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lecture">
+        <item>리눅스 프로그래밍</item>
+        <item>문제해결기법</item>
+        <item>컴퓨터구조</item>
+        <item>자료구조</item>
+        <item>오픈소스</item>
+        <item>시스템 프로그래밍</item>
+        <item>객체지향프로그래밍1</item>
+        <item>객체지향프로그래밍2</item>
+    </string-array>
+</resources>
