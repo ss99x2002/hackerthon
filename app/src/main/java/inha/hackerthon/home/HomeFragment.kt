@@ -20,6 +20,8 @@ import com.google.firebase.ktx.Firebase
 import inha.hackerthon.ArticleAddActivity
 import inha.hackerthon.DBKey.Companion.CHILD_CHAT
 import inha.hackerthon.DBKey.Companion.DB_ARTICLES
+import inha.hackerthon.DBKey.Companion.DB_JUNIOR
+import inha.hackerthon.DBKey.Companion.DB_SENIOR
 import inha.hackerthon.DBKey.Companion.DB_USERS
 import inha.hackerthon.R
 import inha.hackerthon.chatlist.ChatList
@@ -77,15 +79,19 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
                         content = articleModel.title,
                         key = System.currentTimeMillis()
                     )
-                    userDB.child(auth.currentUser!!.uid)
-                        .child(CHILD_CHAT)
-                        .push()
-                        .setValue(chatRoom)
+                    if(articleModel.who == "후배"){
+                        userDB.child(auth.currentUser!!.uid)
+                            .child(CHILD_CHAT)
+                            .child(DB_SENIOR)
+                            .push()
+                            .setValue(chatRoom)
 
-                    userDB.child(articleModel.hostId)
-                        .child(CHILD_CHAT)
-                        .push()
-                        .setValue(chatRoom)
+                        userDB.child(articleModel.hostId)
+                            .child(CHILD_CHAT)
+                            .child(DB_JUNIOR)
+                            .push()
+                            .setValue(chatRoom)
+                    }
 
                     Snackbar.make(view, "채팅방이 생성되었습니다.", Snackbar.LENGTH_LONG).show()
                 }

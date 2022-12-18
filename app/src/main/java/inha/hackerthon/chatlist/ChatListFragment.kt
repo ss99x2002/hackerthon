@@ -14,6 +14,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import inha.hackerthon.DBKey.Companion.CHILD_CHAT
+import inha.hackerthon.DBKey.Companion.DB_FRIEND
+import inha.hackerthon.DBKey.Companion.DB_JUNIOR
 import inha.hackerthon.DBKey.Companion.DB_USERS
 import inha.hackerthon.R
 import inha.hackerthon.chatdetail.ChatRoomActivity
@@ -45,7 +47,13 @@ class ChatListFragment: Fragment(R.layout.fragment_chatlist) {
         fragmentChatlistBinding.chatListRecyclerView.adapter = chatListAdapter
         fragmentChatlistBinding.chatListRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        val chatDB = Firebase.database.reference.child(DB_USERS).child(auth.currentUser!!.uid).child(CHILD_CHAT)
+        val chatDB =
+            Firebase
+                .database.reference
+                .child(DB_USERS)
+                .child(auth.currentUser!!.uid)
+                .child(CHILD_CHAT)
+                .child(DB_JUNIOR)
 
 
         //chatRoomList.add(ChatList(0,0,"하하내용", 0))
