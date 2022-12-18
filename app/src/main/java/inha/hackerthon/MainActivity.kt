@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import inha.hackerthon.chatlist.ChatListFragment
+import inha.hackerthon.chatlist.ChatVPFragment
 import inha.hackerthon.databinding.ActivityMainBinding
 import inha.hackerthon.home.HomeFragment
 import inha.hackerthon.mypage.MyPageFragment
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val homeFragment = HomeFragment()
-        val chatListFragment = ChatListFragment()
+        val chatListFragment = ChatVPFragment()
         val myPageFragment = MyPageFragment()
 
         replaceFragment(homeFragment)
