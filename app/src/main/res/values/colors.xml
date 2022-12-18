@@ -9,4 +9,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray_cc">#cccccccc</color>
     <color name="gray_ec">#ecececec</color>
+
+    <color name="red">#FF0000</color>
+    <color name="navy">#0B22B7</color>
+    <color name="blue">#0066FF</color>
+    <color name="sky_blue">#5ECFFF</color>
+    <color name="light_purple">#C495FF</color>
+    <color name="purple">#4A05EB</color>
+    <color name="peach">#FF9797</color>
+    <color name="pink">#FD6ED2</color>
+    <color name="yellow">#FFDE00</color>
+    <color name="light_green">#A5FF55</color>
+    <color name="brown">#A67543</color>
 </resources>
