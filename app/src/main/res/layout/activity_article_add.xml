@@ -127,6 +127,7 @@
             android:text="후배"
             android:layout_marginEnd="20dp"
             android:elevation="3dp"
+            android:onClick="onClick"
             android:background="@drawable/view_young"/>
 
         <Button
@@ -136,6 +137,7 @@
             android:text="선배"
             android:layout_marginEnd="20dp"
             android:elevation="3dp"
+            android:onClick="onClick"
             android:background="@drawable/view_old"/>
 
         <Button
@@ -144,6 +146,7 @@
             android:layout_height="wrap_content"
             android:text="동기"
             android:elevation="3dp"
+            android:onClick="onClick"
             android:background="@drawable/view_same"/>
     </LinearLayout>
 
