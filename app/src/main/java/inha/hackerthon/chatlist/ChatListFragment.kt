@@ -47,17 +47,15 @@ class ChatListFragment: Fragment(R.layout.fragment_chatlist) {
         fragmentChatlistBinding.chatListRecyclerView.adapter = chatListAdapter
         fragmentChatlistBinding.chatListRecyclerView.layoutManager = LinearLayoutManager(context)
 
+        //동기
         val chatDB =
             Firebase
                 .database.reference
                 .child(DB_USERS)
                 .child(auth.currentUser!!.uid)
                 .child(CHILD_CHAT)
-                .child(DB_JUNIOR)
+                .child(DB_FRIEND)
 
-
-        //chatRoomList.add(ChatList(0,0,"하하내용", 0))
-        //chatRoomList.add(ChatList(0,0,"내용내용", 0))
 
 
         chatDB.addListenerForSingleValueEvent(object : ValueEventListener{
